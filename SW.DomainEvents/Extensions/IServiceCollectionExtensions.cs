@@ -18,7 +18,7 @@ namespace SW.DomainEvents
                 .AddClasses(classes => classes.AssignableTo(typeof(IHandle<>)))
                 .AsImplementedInterfaces().WithScopedLifetime());
 
-            serviceCollection.AddScoped<DomainEventDispatcher>();
+            serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
             return serviceCollection;
         }
