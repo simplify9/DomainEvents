@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SW.PrimitiveTypes;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SW.DomainEvents
@@ -16,10 +17,11 @@ namespace SW.DomainEvents
 
         async public Task Dispatch(IDomainEvent domainEvent)
         {
+            var method = typeof(IHandle<>).MakeGenericType(domainEvent.GetType()).GetMethod("Handle");
             var handlers = serviceProvider.GetServices(typeof(IHandle<>).MakeGenericType(domainEvent.GetType()));
 
-            foreach (dynamic handler in handlers)
-                await handler.Handle(domainEvent);
+            foreach (var handler in handlers)
+                await (dynamic)method.Invoke(handler, new object[] { domainEvent });
         }
     }
 }
