@@ -3,8 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>SimplyWorks.DomainEvents</PackageId>
-    <Authors>SimplyWorks</Authors>
+    <Authors>Simplify9</Authors>
     <Product>SimplyWorks.DomainEvents</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/simplify9/DomainEvents</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/simplify9/DomainEvents</RepositoryUrl>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   
   <ItemGroup>
@@ -14,6 +18,13 @@
   <ItemGroup>
     <PackageReference Include="Scrutor" Version="3.2.1" />
     <PackageReference Include="SimplyWorks.PrimitiveTypes" Version="2020.6.4.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
