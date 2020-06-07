@@ -21,7 +21,7 @@ namespace SW.DomainEvents
             var handlers = serviceProvider.GetServices(typeof(IHandle<>).MakeGenericType(domainEvent.GetType()));
 
             foreach (var handler in handlers)
-                await (dynamic)method.Invoke(handler, new object[] { domainEvent });
+                await (Task)method.Invoke(handler, new object[] { domainEvent });
         }
     }
 }
