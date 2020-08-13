@@ -15,6 +15,27 @@ Define the relevant handles by writing classes that implement the **IHandle** in
 ## Getting Started 
 To use *DomainEvents*, you will require the [`PrimitiveTypes`](https://github.com/simplify9/PrimitiveTypes) library. 
 
+## *DomainEvents* Setup
+
+```csharp
+public static class IServiceCollectionExtensions
+    {
+        public static IServiceCollection AddDomainEvents(this IServiceCollection serviceCollection, params Assembly[] assemblies)
+        {
+            if (assemblies.Length == 0) assemblies = new Assembly[] { Assembly.GetCallingAssembly() };
+
+            serviceCollection.Scan(scan => scan
+                .FromAssemblies(assemblies)
+                .AddClasses(classes => classes.AssignableTo(typeof(IHandle<>)))
+                .AsImplementedInterfaces().WithScopedLifetime());
+
+            serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+
+            return serviceCollection;
+        }
+
+    }
+```
 ## Getting support 👷
 If you encounter any bugs, don't hesitate to submit an [issue](https://github.com/simplify9/DomainEvents/issues). We'll get back to you promptly!
 
