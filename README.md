@@ -15,7 +15,7 @@ Define the relevant handles by writing classes that implement the **IHandle** in
 ## Getting Started 
 To use *DomainEvents*, you will require the [`PrimitiveTypes`](https://github.com/simplify9/PrimitiveTypes) library. 
 
-## *DomainEvents* Setup
+### *DomainEvents* Setup
 
 ```csharp
 public static class IServiceCollectionExtensions
